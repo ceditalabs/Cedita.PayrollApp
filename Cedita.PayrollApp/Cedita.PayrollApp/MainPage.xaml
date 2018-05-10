@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:c="clr-namespace:Cedita.PayrollApp.Converters"
+             xmlns:ctrl="clr-namespace:Cedita.PayrollApp.Controls"
              xmlns:local="clr-namespace:Cedita.PayrollApp"
              x:Class="Cedita.PayrollApp.MainPage">
     <ContentPage.Resources>
@@ -20,36 +21,43 @@
             <StackLayout>
                 <StackLayout StyleClass="blueheader">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                        <Label TextColor="White" HorizontalOptions="Center" FontSize="22">Gross</Label>
-                        <Picker HorizontalOptions="Center" SelectedItem="{Binding GrossFrequency}" StyleClass="whitelabel" Margin="0">
+                        <Label TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="22">Gross</Label>
+                        <ctrl:NicePicker HorizontalOptions="Center" VerticalOptions="Center" SelectedItem="{Binding GrossFrequency}" StyleClass="whitelabel">
                             <Picker.Items>
                                 <x:String>Daily</x:String>
                                 <x:String>Weekly</x:String>
                                 <x:String>Monthly</x:String>
                                 <x:String>Yearly</x:String>
                             </Picker.Items>
-                        </Picker>
-                        <Label TextColor="White" HorizontalOptions="Center" FontSize="22">Pay</Label>
+                        </ctrl:NicePicker>
+                        <Label TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="22">Pay</Label>
                     </StackLayout>
-                    <Label TextColor="White" Font="OpenSans-Regular.ttf#OpenSans-Regular" HorizontalOptions="FillAndExpand" FontSize="22" HorizontalTextAlignment="Center">Gross Salary</Label>
-                    <Label TextColor="White" Font="OpenSans-Light.ttf#OpenSans-Light" HorizontalOptions="FillAndExpand" FontSize="22" HorizontalTextAlignment="Center">Gross Salary</Label>
-                    <StackLayout Orientation="Horizontal">
-                        <Entry WidthRequest="300" FontFamily="OpenSans-Light.ttf#OpenSans-Light" Text="{Binding GrossSalary, Converter={StaticResource currencyConverter}}" HorizontalTextAlignment="Center" FontSize="32" TextColor="White" />
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label TextColor="White"
+                            FontFamily="OpenSans-Light.ttf#OpenSans-Light"
+                               HorizontalOptions="Center" VerticalOptions="Center" FontSize="36">£</Label>
+                        <ctrl:CurrencyEditor
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="36"
+                            TextColor="White"
+                            FontFamily="OpenSans-Light.ttf#OpenSans-Light"
+                            Text="{Binding GrossSalary}"  />
                     </StackLayout>
+                    <Label HorizontalOptions="Center" FontSize="16" FontFamily="OpenSans-Light.ttf#OpenSans-Light" Text="{Binding FrequencyText}" />
                 </StackLayout>
                 
                 
                 
-                <Label FontSize="18" HorizontalTextAlignment="Center">Tax Code</Label>
+                <!--<Label FontSize="18" HorizontalTextAlignment="Center">Tax Code</Label>
                 <Entry Text="{Binding TaxCode}" HorizontalTextAlignment="Center" FontSize="26" />
                 <Label></Label>
-                <Label></Label>
-                <Label FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center">Your Net Pay</Label>
-                <Label FontSize="26" HorizontalTextAlignment="Center" Text="{Binding NetPay, StringFormat='£{0:N2}'}" />
-                <Label FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center">Tax</Label>
-                <Label FontSize="18" HorizontalTextAlignment="Center" Text="{Binding PayeTax, StringFormat='£{0:N2}'}" />
-                <Label FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center">National Insurance £</Label>
-                <Label FontSize="18" HorizontalTextAlignment="Center" Text="{Binding EeNi, StringFormat='£{0:N2}'}" />
+                <Label></Label>-->
+                <Label FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center">Monthly Net Pay</Label>
+                <Label FontSize="30" HorizontalTextAlignment="Center" Text="{Binding NetPay, StringFormat='£{0:N2}'}" />
+                <Label FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center">Monthly Tax</Label>
+                <Label FontSize="20" HorizontalTextAlignment="Center" Text="{Binding PayeTax, StringFormat='£{0:N2}'}" />
+                <Label FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center">Monthly National Insurance</Label>
+                <Label FontSize="20" HorizontalTextAlignment="Center" Text="{Binding EeNi, StringFormat='£{0:N2}'}" />
             </StackLayout>
         </ScrollView>
 

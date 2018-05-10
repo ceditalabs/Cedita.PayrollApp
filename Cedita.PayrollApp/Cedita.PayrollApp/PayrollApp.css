@@ -1,10 +1,13 @@
-﻿.blueheader {
+﻿label {
+    font-family: OpenSans-Regular.ttf#OpenSans-Regular;
+}
+
+.blueheader {
     background-color: #0077FF;
     padding: 20 10;
 }
 
 .blueheader label, .whitelabel {
-    font-family: OpenSans-Regular.ttf#OpenSans-Regular;
     font-size: 22;
     color: #FFFFFF;
 }

@@ -7,15 +7,11 @@ using Xamarin.Forms;
 
 namespace Cedita.PayrollApp.Converters
 {
-    /// <summary>
-    /// Converter for using in Entry fields for masked input of currency.
-    /// <para>The binded property must be of type decimal, and must invoke the PropertyChangedEventArgs event whenever the value is changed, so that the desired mask behavior is kept.</para>
-    /// </summary>
     public class CurrencyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Decimal.Parse(value.ToString()).ToString("C");
+            return Decimal.Parse(value.ToString()).ToString("N2");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
