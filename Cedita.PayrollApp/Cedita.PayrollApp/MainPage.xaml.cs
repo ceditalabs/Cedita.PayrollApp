@@ -8,12 +8,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Cedita.PayrollApp
 {
     public partial class MainPage : ContentPage
     {
+        public bool Tab1Visible { get; set; }
+        public bool Tab2Visible { get; set; } = true;
+        public bool Tab3Visible { get; set; }
+        public bool Tab4Visible { get; set; }
+
+        ICommand tapCommand;
+        public ICommand TabTappedCommand
+        {
+            get { return tapCommand; }
+        }
+
+        public void OnTapped(object s)
+        {
+            var tabId = s.ToString();
+            if (tabId == "1")
+            {
+                Tab1Visible = true;
+                Tab2Visible = false;
+                Tab3Visible = false;
+                Tab4Visible = false;
+            } else if (tabId == "2")
+            {
+                Tab1Visible = false;
+                Tab2Visible = true;
+                Tab3Visible = false;
+                Tab4Visible = false;
+            }
+            else if (tabId == "3")
+            {
+                Tab1Visible = false;
+                Tab2Visible = false;
+                Tab3Visible = true;
+                Tab4Visible = false;
+            }
+            else
+            {
+                Tab1Visible = false;
+                Tab2Visible = false;
+                Tab3Visible = false;
+                Tab4Visible = true;
+            }
+
+            OnPropertyChanged(nameof(Tab1Visible));
+            OnPropertyChanged(nameof(Tab2Visible));
+            OnPropertyChanged(nameof(Tab3Visible));
+            OnPropertyChanged(nameof(Tab4Visible));
+        }
+
         public string TaxCode { get; set; } = "1185L";
         private decimal grossSalary = 300;
         public decimal GrossSalary {
@@ -63,6 +112,7 @@ namespace Cedita.PayrollApp
         }
 
         public decimal PayeGrossMonthly { get => PayeGross / 12m; }
+        public decimal PayeGrossWeekly { get => PayeGross / 52m; }
         public decimal PayeTax { get; set; }
         public decimal EeNi { get; set; }
         public decimal ErNi { get; set; }
@@ -70,9 +120,19 @@ namespace Cedita.PayrollApp
         public decimal ErPension { get; set; }
         public decimal NetPay => PayeGrossMonthly - PayeTax - EeNi;// - EePension;
 
+        public decimal WeeklyPayeTax { get; set; }
+        public decimal WeeklyEeNi { get; set; }
+        public decimal WeeklyNetPay => PayeGrossWeekly - WeeklyPayeTax - WeeklyEeNi;
+
+
+        public decimal AnnualPayeTax => PayeTax * 12m;
+        public decimal AnnualEeNi => EeNi * 12m;
+        public decimal AnnualNetPay => PayeGross - AnnualPayeTax - AnnualEeNi;
+
         public MainPage()
-		{
-			InitializeComponent();
+        {
+            tapCommand = new Command(OnTapped);
+            InitializeComponent();
             BindingContext = this;
 		}
 
@@ -101,16 +161,29 @@ namespace Cedita.PayrollApp
 
 
             PayeTax = paye.CalculateTaxDueForPeriod(TaxCode, grossForPaye, PayPeriods.Monthly, 1);
-            var niCalc = ni.CalculateNationalInsurance(GrossSalary, 'A', PayPeriods.Monthly);
+            var niCalc = ni.CalculateNationalInsurance(grossForPaye, 'A', PayPeriods.Monthly);
             EeNi = niCalc.EmployeeNi;
             ErNi = niCalc.EmployerNi;
+
+            WeeklyPayeTax = paye.CalculateTaxDueForPeriod(TaxCode, PayeGrossWeekly, PayPeriods.Weekly, 1);
+            niCalc = ni.CalculateNationalInsurance(PayeGrossWeekly, 'A', PayPeriods.Weekly);
+            WeeklyEeNi = niCalc.EmployeeNi;
 
             OnPropertyChanged(nameof(FrequencyText));
             OnPropertyChanged(nameof(PayeTax));
             OnPropertyChanged(nameof(EeNi));
             OnPropertyChanged(nameof(EePension));
+            OnPropertyChanged(nameof(GrossSalary));
+            OnPropertyChanged(nameof(PayeGrossMonthly));
             OnPropertyChanged(nameof(ErNi));
             OnPropertyChanged(nameof(NetPay));
+            OnPropertyChanged(nameof(WeeklyPayeTax));
+            OnPropertyChanged(nameof(PayeGrossWeekly));
+            OnPropertyChanged(nameof(WeeklyEeNi));
+            OnPropertyChanged(nameof(WeeklyNetPay));
+            OnPropertyChanged(nameof(AnnualEeNi));
+            OnPropertyChanged(nameof(AnnualPayeTax));
+            OnPropertyChanged(nameof(AnnualNetPay));
         }
 
         private void CeditaTapped(object sender, EventArgs e)

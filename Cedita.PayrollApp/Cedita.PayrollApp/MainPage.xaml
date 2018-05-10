@@ -45,19 +45,153 @@
                     </StackLayout>
                     <Label HorizontalOptions="Center" FontSize="16" FontFamily="OpenSans-Light.ttf#OpenSans-Light" Text="{Binding FrequencyText}" />
                 </StackLayout>
-                
-                
-                
+
+                <Grid BackgroundColor="#FAFAFA" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Annually" Grid.Column="0" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"></Label>
+
+                    <Label Text="Monthly" Grid.Column="1" VerticalOptions="Center" HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand" FontAttributes="Bold"></Label>
+
+                    <Label Text="Weekly" Grid.Column="2" VerticalOptions="Center" HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand" FontAttributes="Bold"></Label>
+                    <Image Source="gear.png" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Aspect="AspectFill" Margin="10" />
+
+                    <BoxView BackgroundColor="#80FF0000" IsVisible="{Binding Tab1Visible}" HeightRequest="3" Grid.Column="0" VerticalOptions="End" ></BoxView>
+                    <BoxView BackgroundColor="#80FF0000"  IsVisible="{Binding Tab2Visible}" HeightRequest="3" Grid.Column="1" VerticalOptions="End" ></BoxView>
+                    <BoxView BackgroundColor="#80FF0000"  IsVisible="{Binding Tab3Visible}"  HeightRequest="3" Grid.Column="2" VerticalOptions="End" ></BoxView>
+                    <BoxView BackgroundColor="#80FF0000"  IsVisible="{Binding Tab4Visible}"  HeightRequest="3" Grid.Column="3" VerticalOptions="End" ></BoxView>
+
+                    <ContentView BackgroundColor="Transparent" Grid.Column="0">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabTappedCommand}" CommandParameter="1"></TapGestureRecognizer>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+
+                    <ContentView BackgroundColor="Transparent" Grid.Column="1">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabTappedCommand}" CommandParameter="2"></TapGestureRecognizer>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+
+                    <ContentView BackgroundColor="Transparent" Grid.Column="2">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabTappedCommand}" CommandParameter="3"></TapGestureRecognizer>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+
+                    <ContentView BackgroundColor="Transparent" Grid.Column="3">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabTappedCommand}" CommandParameter="4"></TapGestureRecognizer>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+                </Grid>
+
+
+
+                <StackLayout IsVisible="{Binding Tab1Visible}" Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="25" VerticalOptions="Center">Net Pay</Label>
+                        <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding AnnualNetPay, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="20" VerticalOptions="Center">PAYE Tax</Label>
+                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding AnnualPayeTax, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="20" VerticalOptions="Center">NI Contributions</Label>
+                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding AnnualEeNi, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding Tab2Visible}" Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="25" VerticalOptions="Center">Net Pay</Label>
+                        <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding NetPay, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="20" VerticalOptions="Center">PAYE Tax</Label>
+                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding PayeTax, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="20" VerticalOptions="Center">NI Contributions</Label>
+                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding EeNi, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding Tab3Visible}" Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="25" VerticalOptions="Center">Net Pay</Label>
+                        <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding WeeklyNetPay, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="20" VerticalOptions="Center">PAYE Tax</Label>
+                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding WeeklyPayeTax, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="20" VerticalOptions="Center">NI Contributions</Label>
+                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding WeeklyEeNi, StringFormat='£{0:N2}'}" />
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding Tab4Visible}">
+                    <!--Content-->
+                    <Label>Settings</Label>
+                </StackLayout>
+
                 <!--<Label FontSize="18" HorizontalTextAlignment="Center">Tax Code</Label>
                 <Entry Text="{Binding TaxCode}" HorizontalTextAlignment="Center" FontSize="26" />
                 <Label></Label>
-                <Label></Label>-->
+                <Label></Label>
                 <Label FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center">Monthly Net Pay</Label>
-                <Label FontSize="30" HorizontalTextAlignment="Center" Text="{Binding NetPay, StringFormat='£{0:N2}'}" />
                 <Label FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center">Monthly Tax</Label>
                 <Label FontSize="20" HorizontalTextAlignment="Center" Text="{Binding PayeTax, StringFormat='£{0:N2}'}" />
                 <Label FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center">Monthly National Insurance</Label>
-                <Label FontSize="20" HorizontalTextAlignment="Center" Text="{Binding EeNi, StringFormat='£{0:N2}'}" />
+                <Label FontSize="20" HorizontalTextAlignment="Center" Text="{Binding EeNi, StringFormat='£{0:N2}'}" />-->
             </StackLayout>
         </ScrollView>
 
