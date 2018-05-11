@@ -98,84 +98,99 @@
 
 
                 <StackLayout IsVisible="{Binding Tab1Visible}" Margin="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="25" VerticalOptions="Center">Net Pay</Label>
-                        <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding AnnualNetPay, StringFormat='£{0:N2}'}" />
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="20" VerticalOptions="Center">PAYE Tax</Label>
-                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding AnnualPayeTax, StringFormat='£{0:N2}'}" />
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="20" VerticalOptions="Center">NI Contributions</Label>
-                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding AnnualEeNi, StringFormat='£{0:N2}'}" />
-                    </Grid>
+                    <Label HorizontalOptions="Center" FontSize="20">Annual Take Home Pay</Label>
+                    <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding AnnualNetPay, StringFormat='£{0:N2}'}" />
+                    <Label Margin="0,20,0,0" FontSize="20">That's calculated by taking your:</Label>
+                    <StackLayout Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center">Annual Earnings</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding PayeGross, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center">less PAYE Tax</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding AnnualPayeTax, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                                <Label FontSize="20" VerticalOptions="Center">less NI Contributions</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding AnnualEeNi, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                    </StackLayout>
                 </StackLayout>
 
                 <StackLayout IsVisible="{Binding Tab2Visible}" Margin="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="25" VerticalOptions="Center">Net Pay</Label>
-                        <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding NetPay, StringFormat='£{0:N2}'}" />
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="20" VerticalOptions="Center">PAYE Tax</Label>
-                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding PayeTax, StringFormat='£{0:N2}'}" />
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="20" VerticalOptions="Center">NI Contributions</Label>
-                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding EeNi, StringFormat='£{0:N2}'}" />
-                    </Grid>
+                    <Label HorizontalOptions="Center" FontSize="20">Monthly Take Home Pay</Label>
+                    <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding NetPay, StringFormat='£{0:N2}'}" />
+                    <Label Margin="0,20,0,0" FontSize="20">That's calculated by taking your:</Label>
+                    <StackLayout Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center">Monthly Earnings</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding PayeGrossMonthly, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center">less PAYE Tax</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding PayeTax, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center">less NI Contributions</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding EeNi, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                    </StackLayout>
                 </StackLayout>
 
                 <StackLayout IsVisible="{Binding Tab3Visible}" Margin="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="25" VerticalOptions="Center">Net Pay</Label>
-                        <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding WeeklyNetPay, StringFormat='£{0:N2}'}" />
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="20" VerticalOptions="Center">PAYE Tax</Label>
-                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding WeeklyPayeTax, StringFormat='£{0:N2}'}" />
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Label FontSize="20" VerticalOptions="Center">NI Contributions</Label>
-                        <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding WeeklyEeNi, StringFormat='£{0:N2}'}" />
-                    </Grid>
+                    <Label HorizontalOptions="Center" FontSize="20">Weekly Take Home Pay</Label>
+                    <Label Grid.Column="1" FontSize="38" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding WeeklyNetPay, StringFormat='£{0:N2}'}" />
+                    <Label Margin="0,20,0,0" FontSize="20">That's calculated by taking your:</Label>
+                    <StackLayout Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center">Weekly Earnings</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding PayeGrossWeekly, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center">less PAYE Tax</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding WeeklyPayeTax, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="20" VerticalOptions="Center">less NI Contributions</Label>
+                            <Label Grid.Column="1" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding WeeklyEeNi, StringFormat='£{0:N2}'}" />
+                        </Grid>
+                    </StackLayout>
                 </StackLayout>
 
                 <StackLayout IsVisible="{Binding Tab4Visible}">

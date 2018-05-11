@@ -178,6 +178,7 @@ namespace Cedita.PayrollApp
             OnPropertyChanged(nameof(ErNi));
             OnPropertyChanged(nameof(NetPay));
             OnPropertyChanged(nameof(WeeklyPayeTax));
+            OnPropertyChanged(nameof(PayeGross));
             OnPropertyChanged(nameof(PayeGrossWeekly));
             OnPropertyChanged(nameof(WeeklyEeNi));
             OnPropertyChanged(nameof(WeeklyNetPay));
